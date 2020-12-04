@@ -6,6 +6,9 @@
 package pantallas;
 
 import com.mycompany.proyecto_grupo7.App;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import javafx.geometry.Insets;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -51,19 +54,28 @@ public class VistaPantalla {
 
     
     public VistaPantalla() {
-        ImageView fondo = new ImageView(new Image("Imagenes/fondo", 1000, 500, false, false));
-        root = new BorderPane();
-        base_inicio = new HBox();
-        empezar = new Button("Empezar");
-        this.base_inicio.setAlignment(Pos.TOP_CENTER);
-        cantidadSoldados = new Slider(1, 20, 5);
-        cantidadSelec = new Label("5");
-        base_inicio.getChildren().addAll(cantidadSelec, cantidadSoldados);
-        VBox panel = new VBox();
-        panel.getChildren().addAll(base_inicio, empezar);
-        this.root.getChildren().addAll(fondo,panel);
-        root.setCenter(fondo);
-        root.setRight(panel);
+        try {
+            ImageView fondo = new ImageView(new Image(new FileInputStream("src/Imagenes/fondo.jpg"),700,600,false,false));
+            root = new BorderPane();
+            root.setPadding(new Insets(10, 10, 10, 10));
+            base_inicio = new HBox();
+            
+            empezar = new Button("Empezar");
+            this.base_inicio.setAlignment(Pos.TOP_CENTER);
+            cantidadSoldados = new Slider(1, 20, 5);
+            cantidadSelec = new Label("Número de soldados: ");
+            base_inicio.getChildren().addAll(cantidadSelec, cantidadSoldados);
+            VBox panel = new VBox();
+            panel.setAlignment(Pos.TOP_CENTER);
+            panel.setSpacing(20);
+            panel.setPadding(new Insets(10,10,10,10));
+            panel.getChildren().addAll(base_inicio, empezar);
+            //this.root.getChildren().addAll(fondo,panel);
+            root.setCenter(fondo);
+            root.setRight(panel);
+        } catch (FileNotFoundException ex) {
+            System.out.println("No se encontró el archivo");;
+        }
         
         
         
