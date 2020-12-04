@@ -47,10 +47,18 @@ public class Sistema extends Thread {
 //        }
         
         Iterator it = soldados.listIterator(0);
+        Soldado actual;
         while(it.hasNext()){
-            System.out.println(it.next());
+            actual = (Soldado) it.next();
+            System.out.println("soldado numero " + actual.getID() + "asesina a: ");
+                actual = (Soldado) it.next();
+                actual.matar(actual);
         }
+        
+        
     }
+    
+
     
 
     

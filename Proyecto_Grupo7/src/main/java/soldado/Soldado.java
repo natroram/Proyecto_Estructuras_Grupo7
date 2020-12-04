@@ -62,6 +62,7 @@ public class Soldado {
    
     public void matar(Soldado soldado) {
         soldado.estado = false;
+        System.out.println("Soldado " + id + " ha sido asesinado.");
         try{
             Image nruta = new Image(rutaCuerpoMuerto);
             cuerpo.setImage(nruta);
@@ -84,6 +85,9 @@ public class Soldado {
         return "Soldado{" + "estado=" + estado + ", id=" + id + '}';
     }
     
+    public int getID() {
+        return this.id;
+    }
     
 
 }
