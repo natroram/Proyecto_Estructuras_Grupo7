@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,11 +28,11 @@ import tdas_linkedlist.CircularLinkedList;
  * @author david
  */
 public class VistaPantalla {
-    Sistema sis = new Sistema();
-    private StackPane menu = new StackPane();
-    private HBox base_inicio = new HBox(100);
-    private ImageView fondo;
-    private Button empezar = new Button("Empezar");
+    //Sistema sis = new Sistema();
+    private BorderPane root;
+    private HBox base_inicio;
+    //private ImageView fondo;
+    private Button empezar;
     
     private Pane contenido;
     private Label titulo;
@@ -50,22 +51,30 @@ public class VistaPantalla {
 
     
     public VistaPantalla() {
-        this.fondo = new ImageView(new Image("Imagenes/fondo", 1000, 500, false, false));
+        ImageView fondo = new ImageView(new Image("Imagenes/fondo", 1000, 500, false, false));
+        root = new BorderPane();
+        base_inicio = new HBox();
+        empezar = new Button("Empezar");
         this.base_inicio.setAlignment(Pos.TOP_CENTER);
-        this.menu.getChildren().addAll(fondo, base_inicio);
-        
         cantidadSoldados = new Slider(1, 20, 5);
         cantidadSelec = new Label("5");
+        base_inicio.getChildren().addAll(cantidadSelec, cantidadSoldados);
+        VBox panel = new VBox();
+        panel.getChildren().addAll(base_inicio, empezar);
+        this.root.getChildren().addAll(fondo,panel);
+        root.setCenter(fondo);
+        root.setRight(panel);
         
-        empezar.setOnMouseClicked(e->Empezar());
+        
+        
     }
 
     /**
      * retorna el nodo principal que se presentara en la escena principal
      * @return 
      */
-    public StackPane getMenu_inicio() {
-        return menu;
+    public BorderPane getRoot() {
+        return root;
     }
 
     
