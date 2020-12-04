@@ -353,7 +353,7 @@ public class CircularLinkedList<E> implements List<E>, Iterable<E> {
             
             @Override
             public boolean hasNext () {
-                return currentIndex < efectivo;
+                return this.next() != null;
             }
 
             @Override
