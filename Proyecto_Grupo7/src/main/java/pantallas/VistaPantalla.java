@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,13 +48,15 @@ public class VistaPantalla {
     private Slider posicionInicio;
     private Pane imagenesSoldado;
     private HBox opciones;
-    private VBox direccion;
+    private HBox direccion;
     private Label direc = new Label("Escoger direccion:");
     private ToggleGroup grupoDirec = new ToggleGroup();
     private RadioButton izquierda = new RadioButton("Izquierda");
     private RadioButton derecha = new RadioButton("Derecha");
     private ImageView fondo2;
     private Button simular;
+    private ToggleButton goLeft;
+    private ToggleButton goRight;
 
     
     public VistaPantalla() {
@@ -78,6 +81,17 @@ public class VistaPantalla {
             panel.setSpacing(20);
             panel.setPadding(new Insets(10,10,10,10));
             panel.getChildren().addAll(base_inicio, empezar);
+            
+            direccion = new HBox(5);
+            direccion.setAlignment(Pos.CENTER);
+            ToggleGroup toogles = new ToggleGroup();
+            goLeft = new ToggleButton("Izquierda");
+            goRight = new ToggleButton("Derecha");
+            goLeft.setToggleGroup(toogles);
+            goRight.setToggleGroup(toogles);
+            direccion.getChildren().addAll(goLeft, goRight);
+            
+            panel.getChildren().add(direccion);
             //this.root.getChildren().addAll(fondo,panel);
             root.setCenter(fondo);
             root.setRight(panel);
