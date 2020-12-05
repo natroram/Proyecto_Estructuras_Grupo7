@@ -57,9 +57,65 @@ public class VistaPantalla {
     private Button simular;
     private ToggleButton goLeft;
     private ToggleButton goRight;
+    private StackPane stack;
 
     
     public VistaPantalla() {
+        
+        soldados = new CircularLinkedList<>();
+        imagenesSoldado.getChildren().clear();
+        
+        double centrox = 0;
+        double centroy = 125;
+        double espacio = 360 / Integer.parseInt(cantidadSelec.getText());
+        int c = 0;
+        int tamx = 0, tamy = 0;
+
+        System.out.println(cantidadSelec.getText());
+        
+        
+        if (Integer.parseInt(cantidadSelec.getText()) <= 5) {
+            tamx = 150;
+            tamy = 150;
+        } else if (Integer.parseInt(cantidadSelec.getText()) <= 10) {
+            tamx = 100;
+            tamy = 100;
+        } else if (Integer.parseInt(cantidadSelec.getText()) <= 15) {
+            tamx = 75;
+            tamy = 75;
+        } else {
+            tamx = 50;
+            tamy = 50;
+        }
+        
+        
+        //agregando soldados a la lista
+        for (int i = 0; i < Integer.parseInt(cantidadSelec.getText()); i++) {
+            Soldado soldado = new Soldado(centrox, centroy, tamx, tamy);
+            soldados.addLast(soldado);
+        }
+        System.out.println(soldados.size());
+        
+        //agregando soldados en rotacion
+        for (Soldado sol : soldados) {
+            
+            //System.out.println(sol.isAlive());
+            Rotate eje = new Rotate();
+            eje.setPivotX(centrox);
+            eje.setPivotY(centroy);
+            eje.setAngle(espacio);
+
+            sol.getCuerpo().setLayoutX(0);
+            sol.getCuerpo().setLayoutY(50);
+
+            sol.getCuerpo().getTransforms().add(eje);
+            eje.setAngle(eje.getAngle() * c);
+ 
+            c++;
+            imagenesSoldado.getChildren().add(sol.getCuerpo());
+
+        }
+        
         try {
             ImageView fondo = new ImageView(new Image(new FileInputStream("src/Imagenes/fondo.jpg"),700,600,false,false));
             root = new BorderPane();
@@ -67,6 +123,12 @@ public class VistaPantalla {
             base_inicio = new HBox();
             
             empezar = new Button("Empezar");
+            empezar.setOnMouseClicked(e -> {
+                Sistema sis = new Sistema(this);
+                sis.start();
+                
+            });
+            
             this.base_inicio.setAlignment(Pos.TOP_CENTER);
             cantidadSoldados = new Slider(2, 20, 5);
             cantidadSoldados.setMajorTickUnit(1);
@@ -93,8 +155,12 @@ public class VistaPantalla {
             
             panel.getChildren().add(direccion);
             //this.root.getChildren().addAll(fondo,panel);
-            root.setCenter(fondo);
+            
+            stack = new StackPane();
+            stack.getChildren().addAll(fondo, imagenesSoldado);
+            root.setCenter(stack);
             root.setRight(panel);
+            
         } catch (FileNotFoundException ex) {
             System.out.println("No se encontró el archivo");;
         }
@@ -171,6 +237,8 @@ public class VistaPantalla {
             imagenesSoldado.getChildren().add(sol.getCuerpo());
 
         }
+        
+
 
         
         

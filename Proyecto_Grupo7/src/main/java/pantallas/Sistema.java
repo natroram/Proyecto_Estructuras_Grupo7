@@ -20,11 +20,16 @@ public class Sistema extends Thread {
     CircularLinkedList<Soldado> soldados;
     int cantidadSoldados;
     int cantidadVivos;
-    VistaPantalla vista = new VistaPantalla();
+    VistaPantalla vista;
+    
+    public Sistema(VistaPantalla vista) {
+        this.vista = vista;
+    }
     
     @Override
     public void run() {
             try {
+                
                 double primero = vista.getPosicionInicio().getValue();
                 int contador = 0;
                 /**
@@ -104,32 +109,32 @@ public class Sistema extends Thread {
         }
     }
     
-    public void ejecucion() {
-        Iterator it = soldados.listIterator(0);
-        Soldado actual;
-        boolean interruptor = true;
-        cantidadVivos = cantidadSoldados;
-        System.out.println(soldados.size());
-        while(interruptor) {
-            actual = (Soldado) it.next();
-            System.out.println(actual);
-            System.out.println("soldado numero " + actual.getID() + " asesina a: ");
-            actual = (Soldado) it.next();
-            if(actual.isAlive()){
-                actual.matar(actual);
-                cantidadVivos--;
-                System.out.println("vivos: " + cantidadVivos);
-            }
-            if (cantidadVivos == 1) {
-                interruptor = false;
-            }
-        }
-        System.out.println("resultado final");
-        for(Soldado soldado: soldados){
-            System.out.println(soldado);
-        }
-    }
-    
+//    public void ejecucion() {
+//        Iterator it = soldados.listIterator(0);
+//        Soldado actual;
+//        boolean interruptor = true;
+//        cantidadVivos = cantidadSoldados;
+//        System.out.println(soldados.size());
+//        while(interruptor) {
+//            actual = (Soldado) it.next();
+//            System.out.println(actual);
+//            System.out.println("soldado numero " + actual.getID() + " asesina a: ");
+//            actual = (Soldado) it.next();
+//            if(actual.isAlive()){
+//                actual.matar(actual);
+//                cantidadVivos--;
+//                System.out.println("vivos: " + cantidadVivos);
+//            }
+//            if (cantidadVivos == 1) {
+//                interruptor = false;
+//            }
+//        }
+//        System.out.println("resultado final");
+//        for(Soldado soldado: soldados){
+//            System.out.println(soldado);
+//        }
+//    }
+//    
 
     
 
