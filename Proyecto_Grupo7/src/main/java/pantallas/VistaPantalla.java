@@ -62,7 +62,11 @@ public class VistaPantalla {
             
             empezar = new Button("Empezar");
             this.base_inicio.setAlignment(Pos.TOP_CENTER);
-            cantidadSoldados = new Slider(1, 20, 5);
+            cantidadSoldados = new Slider(2, 20, 2);
+            cantidadSoldados.setMajorTickUnit(1);
+            cantidadSoldados.setShowTickLabels(true);
+            cantidadSoldados.setShowTickMarks(true);
+            cantidadSoldados.setSnapToTicks(true);
             cantidadSelec = new Label("Número de soldados: ");
             base_inicio.getChildren().addAll(cantidadSelec, cantidadSoldados);
             VBox panel = new VBox();
