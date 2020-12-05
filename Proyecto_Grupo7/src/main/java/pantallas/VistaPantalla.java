@@ -14,7 +14,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -46,9 +48,10 @@ public class VistaPantalla {
     private Pane imagenesSoldado;
     private HBox opciones;
     private VBox direccion;
-    private Label direccionSelec;
-    private Button izquierda;
-    private Button derecha;
+    private Label direc = new Label("Escoger direccion:");
+    private ToggleGroup grupoDirec = new ToggleGroup();
+    private RadioButton izquierda = new RadioButton("Izquierda");
+    private RadioButton derecha = new RadioButton("Derecha");
     private ImageView fondo2;
     private Button simular;
 
@@ -62,12 +65,13 @@ public class VistaPantalla {
             
             empezar = new Button("Empezar");
             this.base_inicio.setAlignment(Pos.TOP_CENTER);
-            cantidadSoldados = new Slider(2, 20, 2);
+            cantidadSoldados = new Slider(2, 20, 5);
             cantidadSoldados.setMajorTickUnit(1);
             cantidadSoldados.setShowTickLabels(true);
             cantidadSoldados.setShowTickMarks(true);
             cantidadSoldados.setSnapToTicks(true);
             cantidadSelec = new Label("Número de soldados: ");
+            posicionInicio = new Slider(1, 5, 1);
             base_inicio.getChildren().addAll(cantidadSelec, cantidadSoldados);
             VBox panel = new VBox();
             panel.setAlignment(Pos.TOP_CENTER);
@@ -162,7 +166,28 @@ public class VistaPantalla {
         return this.contenido;
     }
     
+    public Slider getPosicionInicio() {
+        return posicionInicio;
+    }
+    
+    public Slider getCantidadSoldados() {
+        return cantidadSoldados;
+    }
+    
+    public ToggleGroup getGrupoDirec(){
+        return grupoDirec;
+    }
+    
+    public RadioButton getDerecha(){
+        return derecha;
+    }
+    
+     public RadioButton getIzquierda(){
+        return derecha;
+    }
+     
     public void iniciarContenido() {
         
     }
+    
 }

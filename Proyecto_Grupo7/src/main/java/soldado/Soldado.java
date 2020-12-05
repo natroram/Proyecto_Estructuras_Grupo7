@@ -72,8 +72,12 @@ public class Soldado {
 //        
     }
 
-    private boolean getEstado() {
+    public boolean getEstado() {
         return this.estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
     public boolean equals(Soldado sold){
@@ -89,5 +93,25 @@ public class Soldado {
         return this.id;
     }
     
+    public void preparado() {
+        Image nruta = new Image("imagenes/preparado.png");
+        cuerpo.setImage(nruta);
+    }
+
+    public void ataque_der() {
+        Image nruta = new Image("imagenes/ataque_derecha.png");
+        cuerpo.setImage(nruta);
+    }
+
+    public void ataque_izq() {
+        Image nruta = new Image("imagenes/ataque_izquierda.png");
+        cuerpo.setImage(nruta);
+    }
+
+    public void normal() {
+        Image nruta = new Image("imagenes/vivo.png");
+        cuerpo.setImage(nruta);
+    }
+
 
 }
