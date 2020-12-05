@@ -18,6 +18,7 @@ import tdas_linkedlist.CircularLinkedList;
 public class Sistema extends Thread {
     CircularLinkedList<Soldado> soldados;
     int cantidadSoldados;
+    int cantidadVivos;
     
     @Override
     public void run() {
@@ -30,32 +31,35 @@ public class Sistema extends Thread {
     public void iniciarCirculo(int cantidad){
         cantidadSoldados = cantidad;
         soldados = new CircularLinkedList<> ();
-        for(int i = 0; i<= cantidadSoldados; i++) {
+        for(int i = 1; i <= cantidadSoldados; i++) {
             soldados.addLast(new Soldado(i));
         }
     }
     
     public void ejecucion() {
-//        Soldado asesino;
-//        for(Soldado soldado: soldados){
-//            asesino = soldado;
-//            if(soldado != asesino){
-//                if(soldado.isAlive()){
-//                    asesino.matar(soldado);
-//                }
-//            }
-//        }
-        
         Iterator it = soldados.listIterator(0);
         Soldado actual;
-        while(it.hasNext()){
+        boolean interruptor = true;
+        cantidadVivos = cantidadSoldados;
+        System.out.println(soldados.size());
+        while(interruptor) {
             actual = (Soldado) it.next();
-            System.out.println("soldado numero " + actual.getID() + "asesina a: ");
-                actual = (Soldado) it.next();
+            System.out.println(actual);
+            System.out.println("soldado numero " + actual.getID() + " asesina a: ");
+            actual = (Soldado) it.next();
+            if(actual.isAlive()){
                 actual.matar(actual);
+                cantidadVivos--;
+                System.out.println("vivos: " + cantidadVivos);
+            }
+            if (cantidadVivos == 1) {
+                interruptor = false;
+            }
         }
-        
-        
+        System.out.println("resultado final");
+        for(Soldado soldado: soldados){
+            System.out.println(soldado);
+        }
     }
     
 

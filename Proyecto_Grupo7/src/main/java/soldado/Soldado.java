@@ -63,13 +63,13 @@ public class Soldado {
     public void matar(Soldado soldado) {
         soldado.estado = false;
         System.out.println("Soldado " + id + " ha sido asesinado.");
-        try{
-            Image nruta = new Image(rutaCuerpoMuerto);
-            cuerpo.setImage(nruta);
-        } catch(Exception e) {
-            System.err.println("Error al cargar la imagen del cuerpo muerto.");
-        }
-        
+//        try{
+//            Image nruta = new Image(rutaCuerpoMuerto);
+//            cuerpo.setImage(nruta);
+//        } catch(Exception e) {
+//            System.err.println("Error al cargar la imagen del cuerpo muerto.");
+//        }
+//        
     }
 
     private boolean getEstado() {
