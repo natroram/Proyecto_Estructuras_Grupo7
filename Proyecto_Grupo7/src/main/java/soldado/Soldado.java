@@ -20,8 +20,8 @@ public class Soldado {
     double posicionY;
     //Las rutas de los archivos ahora son atributos, para referenciarlas siempre
     //que las necesitemos, en vez de escribirlas a cada rato.
-    String rutaCuerpo = "";
-    String rutaCuerpoMuerto = "";
+    String rutaCuerpo = "imagenes/warriorParado.png";
+    String rutaCuerpoMuerto = "imagenes/warriorMuerto.png";
     ImageView cuerpo;
     int id;
 
@@ -63,13 +63,13 @@ public class Soldado {
     public void matar(Soldado soldado) {
         soldado.estado = false;
         System.out.println("Soldado " + id + " ha sido asesinado.");
-//        try{
-//            Image nruta = new Image(rutaCuerpoMuerto);
-//            cuerpo.setImage(nruta);
-//        } catch(Exception e) {
-//            System.err.println("Error al cargar la imagen del cuerpo muerto.");
-//        }
-//        
+        try{
+            Image nruta = new Image(rutaCuerpoMuerto);
+            cuerpo.setImage(nruta);
+        } catch(Exception e) {
+            System.err.println("Error al cargar la imagen del cuerpo muerto.");
+        }
+        
     }
 
     public boolean getEstado() {
@@ -109,7 +109,7 @@ public class Soldado {
     }
 
     public void normal() {
-        Image nruta = new Image("imagenes/vivo.png");
+        Image nruta = new Image(rutaCuerpo);
         cuerpo.setImage(nruta);
     }
 
