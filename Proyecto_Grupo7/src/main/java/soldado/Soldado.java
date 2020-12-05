@@ -99,12 +99,12 @@ public class Soldado {
     }
 
     public void ataque_der() {
-        Image nruta = new Image("imagenes/ataque_derecha.png");
+        Image nruta = new Image("imagenes/warriorAtacando.png");
         cuerpo.setImage(nruta);
     }
 
     public void ataque_izq() {
-        Image nruta = new Image("imagenes/ataque_izquierda.png");
+        Image nruta = new Image("imagenes/warriorAtacandoVolteado.png");
         cuerpo.setImage(nruta);
     }
 
